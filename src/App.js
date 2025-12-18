@@ -326,7 +326,7 @@ const App = () => {
             </div>
             <div className="w-48 h-48 rounded-[1000px] overflow-hidden flex-shrink-0">
               <img 
-                src={process.env.PUBLIC_URL + "/images/profile.jpg"} 
+                src={process.env.PUBLIC_URL + "/images/Profile.jpg"} 
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
@@ -381,7 +381,7 @@ const App = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <img 
-                src={process.env.PUBLIC_URL + "/images/profile.jpg"} 
+                src={process.env.PUBLIC_URL + "/images/Profile.jpg"} 
                 alt="Profile"
                 className="w-full h-full object-cover"
               />
