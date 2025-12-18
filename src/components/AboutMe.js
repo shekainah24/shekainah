@@ -35,8 +35,8 @@ const AboutMe = () => {
           {/* Image - Hidden on mobile, visible on desktop */}
           <div className="hidden md:block w-64 h-64 rounded-xl overflow-hidden flex-shrink-0">
             <img 
-              src={process.env.PUBLIC_URL + "/images/Profile.jpg"} 
-              alt="Profile"
+              src={process.env.PUBLIC_URL + "/images/profile.jpg"} 
+              alt="profile"
               className="w-full h-full object-cover"
             />
           </div>
