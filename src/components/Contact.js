@@ -99,7 +99,7 @@ const Contact = () => {
   };
 
   const handleDownloadCV = () => {
-    const cvUrl = process.env.PUBLIC_URL + '/documents/BOY BRION-cv.pdf';
+    const cvUrl = process.env.PUBLIC_URL + '/documents/ORPILLA CV.pdf';
     window.open(cvUrl, '_blank');
   };
 
@@ -123,7 +123,7 @@ const Contact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-[#110B11]/50 rounded-xl p-6 border border-[#B7990D]/20"
+            className="bg-[#110B11]/50 rounded-xl p-6 border border-[#1DB954]/20"
           >
             <form ref={form} onSubmit={handleSubmit} className="space-y-4">
               {/* Name Input */}
@@ -136,7 +136,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-[#110B11] border border-[#B7990D]/20 rounded-lg text-[#F2F4CB] focus:outline-none focus:border-[#B7990D]"
+                  className="w-full px-4 py-2 bg-[#110B11] border border-[#1DB954]/20 rounded-lg text-[#F2F4CB] focus:outline-none focus:border-[#B7990D]"
                 />
               </div>
               
@@ -150,7 +150,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-[#110B11] border border-[#B7990D]/20 rounded-lg text-[#F2F4CB] focus:outline-none focus:border-[#B7990D]"
+                  className="w-full px-4 py-2 bg-[#110B11] border border-[#1DB954]/20 rounded-lg text-[#F2F4CB] focus:outline-none focus:border-[#B7990D]"
                 />
               </div>
               
@@ -164,7 +164,7 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 bg-[#110B11] border border-[#B7990D]/20 rounded-lg text-[#F2F4CB] focus:outline-none focus:border-[#B7990D]"
+                  className="w-full px-4 py-2 bg-[#110B11] border border-[#1DB954]/20 rounded-lg text-[#F2F4CB] focus:outline-none focus:border-[#B7990D]"
                 />
               </div>
               
@@ -178,14 +178,14 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows="4"
-                  className="w-full px-4 py-2 bg-[#110B11] border border-[#B7990D]/20 rounded-lg text-[#F2F4CB] focus:outline-none focus:border-[#B7990D]"
+                  className="w-full px-4 py-2 bg-[#110B11] border border-[#1DB954]/20 rounded-lg text-[#F2F4CB] focus:outline-none focus:border-[#B7990D]"
                 ></textarea>
               </div>
 
               {/* Send Message Button */}
               <button
                 type="submit"
-                className="w-full bg-[#B7990D] text-[#110B11] py-2 px-4 rounded-lg font-semibold hover:bg-[#B7990D]/90 transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-[#1DB954] text-[#110B11] py-2 px-4 rounded-lg font-semibold hover:bg-[#1DB954]/90 transition-colors flex items-center justify-center gap-2"
               >
                 <FaEnvelope />
                 Send Message
@@ -217,15 +217,15 @@ const Contact = () => {
               <h3 className="text-[#F2F4CB] text-2xl font-bold mb-4">Contact Information</h3>
               <div className="space-y-4 text-gray-400">
                 <p>Feel free to reach out to me through the contact form or directly via email.</p>
-                <p>Email: <a href="mailto:fcalumay2021@gmail.com" className="text-[#B7990D] hover:text-[#B7990D]/80">emjaybrion24@gmail.com</a></p>
-                <p>Location: Caloocan City, Philippines</p>
+                <p>Email: <a href="mailto:shekainah.a.o@gmail.com" className="text-[#1DB954] hover:text-[#1DB954]/80">shekainah.a.o@gmail.com</a></p>
+                <p>Location: Valenzuela City, Philippines</p>
                 <div className="flex space-x-4 pt-2">
-                  <a href="https://www.instagram.com/izzy.com.ph/" target="_blank" rel="noopener noreferrer" className="bg-[#F2F4CB] p-3 rounded-full hover:bg-[#F2F4CB]/90 transition-colors">
+                  <a href="https://www.instagram.com/noadiah_shekainah/" target="_blank" rel="noopener noreferrer" className="bg-[#F2F4CB] p-3 rounded-full hover:bg-[#F2F4CB]/90 transition-colors">
                     <svg className="w-6 h-6 text-[#110B11]" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                   </a>
-                  <a href="https://www.facebook.com/emjay.brion.338" target="_blank" rel="noopener noreferrer" className="bg-[#F2F4CB] p-3 rounded-full hover:bg-[#F2F4CB]/90 transition-colors">
+                  <a href="https://www.facebook.com/shekainah.orpilla/" target="_blank" rel="noopener noreferrer" className="bg-[#F2F4CB] p-3 rounded-full hover:bg-[#F2F4CB]/90 transition-colors">
                     <svg className="w-6 h-6 text-[#110B11]" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                     </svg>
@@ -247,7 +247,7 @@ const Contact = () => {
               </p>
               <button
                 onClick={handleDownloadCV}
-                className="w-full bg-[#B7990D] text-[#110B11] py-2 px-4 rounded-lg font-semibold hover:bg-[#B7990D]/90 transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-[#1DB954] text-[#110B11] py-2 px-4 rounded-lg font-semibold hover:bg-[#1DB954]/90 transition-colors flex items-center justify-center gap-2"
               >
                 <FaFileDownload />
                 Download CV

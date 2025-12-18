@@ -4,55 +4,42 @@ import { motion } from 'framer-motion';
 const Projects = () => {
   // Keep this empty since we're removing the projects array
 
-  // Add this array for your artworks
-  const artworks = [
-    { src: process.env.PUBLIC_URL + '/images/projects/Reaper-Death-Seal.png', alt: 'Logo 1' },
-    { src: process.env.PUBLIC_URL + '/images/projects/ArachBytes-Logo2.png', alt: 'Logo 2' },
-    { src: process.env.PUBLIC_URL + '/images/projects/cendog.png', alt: 'Logo 3' },
-    { src: process.env.PUBLIC_URL + '/images/projects/DRP-Year-5-Logo.png', alt: 'Logo 4' },
-    { src: process.env.PUBLIC_URL + '/images/projects/DJC-Tech-Life-Logo2 (1).png', alt: 'Logo 5' },
-    { src: process.env.PUBLIC_URL + '/images/projects/AudioSlaveLogo.png', alt: 'Logo 6' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Brion Logo2.png', alt: 'Logo 7' },
-    { src: process.env.PUBLIC_URL + '/images/projects/coregrounds.png', alt: 'Logo 8' },
-    { src: process.env.PUBLIC_URL + '/images/projects/DJM-Logo.png', alt: 'Logo 9' },
-    
+  // Motion variants for grids and cards
+  const gridContainer = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.06 } }
+  };
 
-  ];
+  const cardVariants = {
+    hidden: { opacity: 0, y: 8 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.35 } }
+  };
+
+ 
 
   // Add this array for your character designs
   const characterDesigns = [
-    { src: process.env.PUBLIC_URL + '/images/projects/Char.png', alt: 'Character 1' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Char2.png', alt: 'Character 2' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Char5.png', alt: 'Character 3' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Char4.png', alt: 'Character 4' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Char6.png', alt: 'Character 6' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Char3.png', alt: 'Character 5' },
+    { src: process.env.PUBLIC_URL + '/images/projects/character jesus.png'},
+    { src: process.env.PUBLIC_URL + '/images/projects/character noadiah.png'},
+    { src: process.env.PUBLIC_URL + '/images/projects/character noah.png'},
     
-         
-    // Add more as needed
   ];
 
-  // Add this array for your 3D designs
-  const threeDDesigns = [
-    { src: process.env.PUBLIC_URL + '/images/projects/Front View.png', alt: '3D Design 1' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Highlight View.png', alt: '3D Design 2' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Left Side View.png', alt: '3D Design 3' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Right Side View.png', alt: '3D Design 4' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Front View (1).png', alt: '3D Design 5' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Highlight View (1).png', alt: '3D Design 6' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Left Side View (1).png', alt: '3D Design 7' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Right Side View (1).png', alt: '3D Design 8' },
-    { src: process.env.PUBLIC_URL + '/images/projects/store1.png', alt: '3D Design 9' },
-    { src: process.env.PUBLIC_URL + '/images/projects/store2.png', alt: '3D Design 10' },
-    { src: process.env.PUBLIC_URL + '/images/projects/store3.png', alt: '3D Design 11' },
-    { src: process.env.PUBLIC_URL + '/images/projects/store4.png', alt: '3D Design 12' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Front View2.png', alt: '3D Design 14' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Highlight.png', alt: '3D Design 15' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Left Side View2.png', alt: '3D Design 16' },
-    { src: process.env.PUBLIC_URL + '/images/projects/Right Side View2.png', alt: '3D Design 17' },
-    { src: process.env.PUBLIC_URL + '/images/projects/balloon.jpg', alt: '3D Design 18' },
-    { src: process.env.PUBLIC_URL + '/images/projects/vase.jpg', alt: '3D Design 19' },
-    // Add more as needed
+  
+
+  const internshipOutputs = [
+    {
+      id: 1,
+      img: process.env.PUBLIC_URL + '/images/projects/smartbaranggay.png',
+      title: 'SMARTBARNGAY: Web-Based System',
+      desc: 'Capstone Project: SmartBarangay is a web-based information and service management system designed to modernize barangay operations by digitizing essential services and records. The system enables residents to conveniently request barangay documents such as clearances, certificates, and permits online, while allowing barangay officials to efficiently process requests, manage resident data, handle complaints, and generate reports through a centralized platform. By automating manual procedures, SmartBarangay improves service delivery, enhances transparency, reduces processing time, and supports data-driven decision-making, ultimately promoting effective governance and improved community engagement.'
+    },
+    {
+      id: 2,
+      img: process.env.PUBLIC_URL + '/images/projects/abcde.png',
+      title: 'BeeGreat',
+      desc: 'BeeGreate is a web-based educational application designed to support early childhood learning for pre-kindergarten children aged three to five, with the active involvement of parents or guardians. The platform delivers interactive and game-based activities that help children develop essential foundational skills such as color recognition, shape identification, number recognition, and basic word pronunciation. By combining play and learning, BeeGreate creates an engaging environment that encourages curiosity, focus, and positive learning habits at an early age.'
+    },
   ];
 
   return (
@@ -65,32 +52,41 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl w-full"
         >
-          <h2 className="text-white text-5xl font-light mb-12">
-            <span className="font-bold">Portfolio</span>
-          </h2>
-
-          {/* Artworks Section */}
-          <section id="artworks" className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 pb-24">
-            <h2 className="text-[#F2F4CB] text-3xl font-bold mb-4 mt-12" style={{ textAlign: 'left', width: '100%' }}>
-              Logo Design
+     <motion.h2 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.6, delay: 0.2 }}
+               className="text-[#F2F4CB] text-5xl font-light"
+             >
+               <span className="font-bold">Portfolio</span>
+             </motion.h2>
+                 {/* Web Projects Section (renamed id to avoid conflict with Internship component) */}
+                 <section id="web-projects" className="relative z-10 flex flex-col items-start px-4 sm:px-6 pb-24">
+            <h2 className="text-[#F2F4CB] text-3xl font-bold mb-6 mt-12" style={{ width: '100%' }}>
+              Web Projects
             </h2>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-yellow-400" style={{ width: '100%', maxWidth: 900 }}>
-              <div className="grid grid-cols-3 gap-1 place-items-center">
-                {artworks.map((art, idx) => (
-                  <motion.img
-                    key={idx}
-                    src={art.src}
-                    alt={art.alt}
-                    className="w-58 h-58 object-contain transition-all duration-300"
-                    style={{ background: 'transparent' }}
-                    whileHover={{ 
-                      scale: 1.2,
-                      zIndex: 1,
-                      transition: { duration: 0.3 }
-                    }}
-                  />
+
+              <div className="w-full">
+              <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-4" variants={gridContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>
+                {internshipOutputs.map((item) => (
+                  <motion.div key={item.id} className="w-full bg-white/5 backdrop-blur-sm rounded-lg p-4 border border-green-400 flex flex-col items-start"
+                    variants={cardVariants}
+                    whileHover={{ y: -6, boxShadow: '0 12px 30px rgba(0,0,0,0.18)' }}
+                    whileTap={{ scale: 0.995 }}
+                  >
+                    <motion.img
+                      src={item.img}
+                      alt={item.title}
+                      className="w-full h-40 object-contain mb-3 rounded"
+                      style={{ background: 'transparent' }}
+                      whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                    />
+                    <h4 className="text-[#F2F4CB] font-semibold">{item.title}</h4>
+                    <p className="text-sm text-gray-300 mt-2">{item.desc}</p>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </section>
 
@@ -99,50 +95,36 @@ const Projects = () => {
             <h2 className="text-[#F2F4CB] text-3xl font-bold mb-4 mt-12" style={{ textAlign: 'left', width: '100%' }}>
               Character Design
             </h2>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-yellow-400" style={{ width: '100%', maxWidth: 900 }}>
-              <div className="grid grid-cols-3 gap-3 place-items-center">
-                {characterDesigns.map((char, idx) => (
-                  <motion.img
-                    key={idx}
-                    src={char.src}
-                    alt={char.alt}
-                    className="w-58 h-58 object-contain transition-all duration-300"
-                    style={{ background: 'transparent' }}
-                    whileHover={{ 
-                      scale: 1.2,
-                      zIndex: 1,
-                      transition: { duration: 0.3 }
-                    }}
-                  />
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-green-400" style={{ width: '100%', maxWidth: 900 }}>
+              <div className="grid grid-cols-3 gap-4 place-items-start">
+                      {characterDesigns.map((char, idx) => (
+                        <motion.div key={idx} className="w-full max-w-xs bg-white/3 backdrop-blur-sm rounded-lg p-3 flex flex-col items-start"
+                          initial={{ opacity: 0, y: 8 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3 }}
+                          whileHover={{ y: -6, boxShadow: '0 10px 30px rgba(0,0,0,0.25)' }}
+                          whileTap={{ scale: 0.99 }}
+                        >
+                    <motion.img
+                      src={char.src}
+                      alt={char.title}
+                      className="w-58 h-58 object-contain mx-auto"
+                      style={{ background: 'transparent' }}
+                      whileHover={{ 
+                        scale: 1.08,
+                        transition: { duration: 0.25 }
+                      }}
+                    />
+                    <h4 className="text-[#F2F4CB] font-semibold mt-3">{char.title}</h4>
+                    <p className="text-sm text-gray-300 mt-1">{char.desc}</p>
+                  </motion.div>
                 ))}
               </div>
             </div>
           </section>
 
-          {/* 3D Design Section */}
-          <section id="three-d-design" className="relative z-10 flex flex-col items-center justify-center px-4 sm:px-6 pb-24">
-            <h2 className="text-[#F2F4CB] text-3xl font-bold mb-4 mt-12" style={{ textAlign: 'left', width: '100%' }}>
-              3D Design
-            </h2>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-yellow-400" style={{ width: '100%', maxWidth: 900 }}>
-              <div className="grid grid-cols-3 gap-3 place-items-center">
-                {threeDDesigns.map((threeD, idx) => (
-                  <motion.img
-                    key={idx}
-                    src={threeD.src}
-                    alt={threeD.alt}
-                    className="w-58 h-58 object-contain transition-all duration-300"
-                    style={{ background: 'transparent' }}
-                    whileHover={{ 
-                      scale: 1.2,
-                      zIndex: 1,
-                      transition: { duration: 0.3 }
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
+          {/* 3D Design section removed per request */}
         </motion.div>
       </section>
     </>

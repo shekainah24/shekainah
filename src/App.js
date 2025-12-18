@@ -6,6 +6,7 @@ import AboutMe from './components/AboutMe';
 import Projects from './components/Projects';
 import Skills from './components/Skills';  // Changed from Contact
 import Contact from './components/Contact'; // Added Contact import
+import Internship from './components/Internship';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -16,22 +17,40 @@ const App = () => {
   // Update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
-      
+      const sections = ['home', 'about', 'projects', 'internship', 'skills', 'contact'];
+      const mid = window.innerHeight / 2;
+
+      // Prefer the section that covers the viewport midpoint
       for (const section of sections) {
         const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top >= 0 && rect.top <= window.innerHeight / 2) {
-            setActiveSection(section);
-            break;
-          }
+        if (!element) continue;
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= mid && rect.bottom >= mid) {
+          setActiveSection(section);
+          return;
+        }
+      }
+
+      // Fallback: pick the last section whose top is above the midpoint
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i]);
+        if (!element) continue;
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= mid) {
+          setActiveSection(sections[i]);
+          return;
         }
       }
     };
 
+    // Run once to set initial active section, and on scroll/resize
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   const showNavbarTemporarily = useCallback(() => {
@@ -62,24 +81,25 @@ const App = () => {
   }, [showNavbarTemporarily]);
 
   // Navigation link component
-  const NavLink = ({ href, children, onClick }) => {
+  // Navigation link component
+  const NavLink = ({ href, children, onClick, className = '' }) => {
     const isActive = activeSection === href.replace('#', '');
-    
+    const base = 'transition-all duration-200';
+    const activeClass = 'font-bold bg-[#F2F4CB] text-[#110B11] rounded-full';
+    const inactiveClass = 'hover:bg-[#F2F4CB] hover:text-[#110B11] hover:font-bold text-[#F2F4CB]';
+    const sizing = onClick ? 'block w-full px-4 py-2 rounded-full text-left' : 'text-sm md:text-base px-3 py-1 rounded-full';
+
     return (
-      <a 
+      <motion.a
         href={href}
         onClick={onClick}
-        className={`
-          transition-all duration-200=
-          ${isActive 
-            ? 'font-bold bg-[#F2F4CB] text-[#110B11]' 
-            : 'hover:bg-[#F2F4CB] hover:text-[#110B11] hover:font-bold text-[#F2F4CB]'
-          }
-          ${onClick ? 'block w-full px-4 py-2' : 'text-sm md:text-base px-3 py-1 rounded-full'}
-        `}
+        className={`${base} ${isActive ? activeClass : inactiveClass} ${sizing} ${className}`}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         {children}
-      </a>
+      </motion.a>
     );
   };
 
@@ -137,10 +157,11 @@ const App = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex justify-center items-center space-x-8 bg-[#B7990D] rounded-[20px] px-6 py-2 w-fit mx-auto">
+            <div className="hidden md:flex justify-center items-center space-x-8 bg-[#1DB954] rounded-[20px] px-6 py-2 w-fit mx-auto">
               <NavLink href="#home">Home</NavLink>
-              <NavLink href="#about">About Me</NavLink>
+              <NavLink href="#about">About</NavLink>
               <NavLink href="#projects">Portfolio</NavLink>
+              <NavLink href="#internship">Internship</NavLink>
               <NavLink href="#skills">Skills</NavLink>
               <NavLink href="#contact">Contact</NavLink>
             </div>
@@ -148,7 +169,7 @@ const App = () => {
             {/* Hamburger Button */}
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center p-2 rounded-lg md:hidden bg-[#B7990D] hover:bg-[#B7990D]/90"
+              className="inline-flex items-center p-2 rounded-lg md:hidden bg-[#7ED957] hover:bg-[#7ED957]/90"
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuOpen}
             >
@@ -176,7 +197,7 @@ const App = () => {
             id="mobile-menu"
             className={`
               absolute top-full left-0 right-0 mt-2 mx-4 bg-[#110B11] rounded-lg 
-              border border-[#B7990D]/20 shadow-lg transform transition-all duration-200 ease-in-out
+              border border-[#7ED957]/20 shadow-lg transform transition-all duration-200 ease-in-out
               ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}
             `}
           >
@@ -184,35 +205,42 @@ const App = () => {
               <NavLink 
                 href="#home"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-[#F2F4CB] hover:bg-[#B7990D]/10 transition-colors"
+                className="block px-4 py-2 text-[#110B11] hover:bg-[#7ED957]/10 transition-colors"
               >
                 Home
               </NavLink>
               <NavLink 
                 href="#about"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-[#F2F4CB] hover:bg-[#B7990D]/10 transition-colors"
+                className="block px-4 py-2 text-[#110B11] hover:bg-[#7ED957]/10 transition-colors"
               >
                 About Me
               </NavLink>
               <NavLink 
                 href="#projects"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-[#F2F4CB] hover:bg-[#B7990D]/10 transition-colors"
+                className="block px-4 py-2 text-[#110B11] hover:bg-[#7ED957]/10 transition-colors"
               >
-                Projects
+                Portfolio
+              </NavLink>
+              <NavLink 
+                href="#internship"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-4 py-2 text-[#110B11] hover:bg-[#7ED957]/10 transition-colors"
+              >
+                Internship
               </NavLink>
               <NavLink 
                 href="#skills"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-[#F2F4CB] hover:bg-[#B7990D]/10 transition-colors"
+                className="block px-4 py-2 text-[#110B11] hover:bg-[#7ED957]/10 transition-colors"
               >
                 Skills
               </NavLink>
               <NavLink 
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-[#F2F4CB] hover:bg-[#B7990D]/10 transition-colors"
+                className="block px-4 py-2 text-[#110B11] hover:bg-[#7ED957]/10 transition-colors"
               >
                 Contact
               </NavLink>
@@ -224,21 +252,21 @@ const App = () => {
   };
 
   return (
-    <div className="bg-[#110B11] min-h-screen flex flex-col relative">
+    <div className="bg-[#000000] min-h-screen flex flex-col relative">
       
-        <div className="fixed inset-0 text-[#F2F4CB]/10 font-mono text-xl select-none pointer-events-none overflow-hidden flex justify-evenly px-4">
+        <div className="fixed inset-0 text-[#70e000]/20 font-mono text-xl select-none pointer-events-none overflow-hidden flex justify-evenly px-4">
           {[
-            '01000101', // E 
-            '01001101', // M
-            '01001010', // J
-            '01000001', // A
-            '01011001', // Y
-            '00100000', // (space)
-            '01000010', // B
-            '01010010', // R
-            '01001001', // I
-            '01001111', // O
-            '01001110'  // N
+            '01000101', // 
+            '01001101', // 
+            '01001010', // 
+            '01000001', // 
+            '01011001', // 
+            '00100000', // (
+            '01000010', // 
+            '01010010', // 
+            '01001001', // 
+            '01001111', // 
+            '01001110'  // 
         ].map((binary, i) => (
           <div key={i} className="flex flex-col animate-binary" style={{
             animationDelay: `${Math.random() * 5}s`,
@@ -276,7 +304,7 @@ const App = () => {
           >
             <div className="flex flex-col items-center flex-1">
               <h1 className="text-5xl font-light mb-4">
-                <span className="text-[#F2F4CB]">Hi! I'm</span> <span className="text-[#F2F4CB] font-bold">Iji "Boy"</span>
+                <span className="text-[#F2F4CB]">Hi! I'm</span> <span className="text-[#F2F4CB] font-bold">Shekainah</span>
               </h1>
               <p className="text-gray-400 text-lg text-center mb-8">
                 Aspiring IT professional seeking an internship.
@@ -284,12 +312,12 @@ const App = () => {
               
               {/* Social Links */}
               <div className="flex space-x-4">
-                <a href="https://www.instagram.com/izzy.com.ph/" target="_blank" rel="noopener noreferrer" className="bg-[#F2F4CB] p-3 rounded-full hover:bg-[#F2F4CB]/90 transition-colors">
+                <a href="https://www.instagram.com/noadiah_shekainah/" target="_blank" rel="noopener noreferrer" className="bg-[#F2F4CB] p-3 rounded-full hover:bg-[#F2F4CB]/90 transition-colors">
                   <svg className="w-6 h-6 text-[#110B11]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                   </svg>
                 </a>
-                <a href="https://www.facebook.com/emjay.brion.338" target="_blank" rel="noopener noreferrer" className="bg-[#F2F4CB] p-3 rounded-full hover:bg-[#F2F4CB]/90 transition-colors">
+                <a href="https://www.facebook.com/shekainah.orpilla/" target="_blank" rel="noopener noreferrer" className="bg-[#F2F4CB] p-3 rounded-full hover:bg-[#F2F4CB]/90 transition-colors">
                   <svg className="w-6 h-6 text-[#110B11]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                   </svg>
@@ -322,7 +350,7 @@ const App = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <h1 className="text-5xl font-light mb-4">
-                <span className="text-[#F2F4CB]">Hi! I'm</span> <span className="text-[#F2F4CB] font-bold">Iji "Boy"</span>
+                <span className="text-[#F2F4CB]">Hi! I'm</span> <span className="text-[#F2F4CB] font-bold">Shekainah</span>
               </h1>
               <p className="text-gray-400 text-lg text-left mb-8">
                 Aspiring IT professional seeking an internship.
@@ -365,19 +393,20 @@ const App = () => {
       {/* Other Components */}
       <AboutMe />
       <Projects />
+      <Internship />
       <Skills />
       <Contact />
 
       {/* Footer */}
       <motion.footer 
-        className="relative z-10 bg-[#B7990D] text-[#110B11] py-4 w-full"
+        className="relative z-10 bg-[#1DB954] text-[#110B11] py-4 w-full"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-4xl mx-auto text-center px-4">
-          <p>&copy; 2025 Boy Brion. All rights reserved.</p>
+          <p>&copy; 2025 Shekainah Orpilla. All rights reserved.</p>
         </div>
       </motion.footer>
     </div>
